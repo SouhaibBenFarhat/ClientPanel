@@ -20,10 +20,12 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 //my services imports
 import { ClientService } from './services/client.service'
+import { FlashMessagesService } from 'angular2-flash-messages/module/flash-messages.service';
 
 //Routes Configuration
 
@@ -31,7 +33,8 @@ const appRoutes: Routes = [
   { path: '', component: DashboardComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  {path:'add-client', component:AddClientComponent}
+  { path: 'add-client', component: AddClientComponent },
+  { path: 'client/:key', component: ClientDetailsComponent }
 ];
 
 export const firebaseConfig = {
@@ -62,13 +65,15 @@ export const firebaseConfig = {
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(firebaseConfig),
-    FormsModule
-  
+    FormsModule,
+    FlashMessagesModule
+
   ],
   providers: [
     AngularFireAuth,
     AngularFireDatabase,
-    ClientService
+    ClientService,
+    FlashMessagesService
   ],
   bootstrap: [AppComponent]
 })

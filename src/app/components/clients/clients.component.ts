@@ -13,6 +13,7 @@ export class ClientsComponent implements OnInit {
 
   clients:any[]; 
   totalOwed:number;
+  
 
   constructor(public clientService: ClientService) { }
 
