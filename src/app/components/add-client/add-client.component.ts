@@ -3,7 +3,6 @@ import { Client } from '../../models/client';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { ClientService } from '../../services/client.service';
-import { reject } from 'q';
 
 @Component({
   selector: 'app-add-client',

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import { Client } from '../models/client'
+import { Promise } from 'q';
 
 @Injectable()
 export class ClientService {
@@ -26,7 +27,14 @@ export class ClientService {
   }
 
   getClientById(key: string) {
-    return this.af.list('/clients',ref => ref.orderByChild('key').equalTo(key)).valueChanges();
+    return this.af.list('/clients/',ref => ref.orderByChild('key').equalTo(key)).valueChanges();
+  }
 
+  updateClient(client:Client){
+    return this.af.object('/clients/'+client.key).set(client);
+  }
+  deleteClient(client:Client){
+    return this.af.object('/clients/'+client.key).remove();
+    
   }
 }
